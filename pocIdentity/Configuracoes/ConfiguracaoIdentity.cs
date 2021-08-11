@@ -11,7 +11,7 @@ namespace pocIdentity.Configuracoes
 {
     public static class ConfiguracaoIdentity
     {
-        public static void AdicionarIdentity(this IServiceCollection servicos, IConfiguration configuracao)
+        public static void AdicionarIdentity(this IServiceCollection servicos)
         {
             if (servicos == null) throw new ArgumentNullException(nameof(servicos));
 

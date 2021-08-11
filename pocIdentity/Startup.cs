@@ -30,12 +30,9 @@ namespace pocIdentity
         {
             services.AddCors(); 
             services.AdicionarBancosDados(Configuration);
-            services.AdicionarIdentity(Configuration);
+            services.AdicionarIdentity();
             services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "pocIdentity", Version = "v1" });
-            });
+            services.AdicionarSwagger();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,8 +41,7 @@ namespace pocIdentity
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "pocIdentity v1"));
+                app.UsarConfiguracaoSwagger();
             }
 
             app.UseRouting();

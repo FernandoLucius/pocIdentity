@@ -39,5 +39,18 @@ namespace pocIdentity.Controllers
 
             return Ok("Usuário cadastrado com sucesso!");
         }
+
+        [HttpPost("entrar")]
+        public async Task<ActionResult> Login(LoginUserViemModel usuarioLogin)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState.Values.SelectMany(e => e.Errors));
+
+            var result = await _signInManager.PasswordSignInAsync(usuarioLogin.Email, usuarioLogin.Senha, false, true);
+
+            if (result.Succeeded)
+                return Ok();
+
+            return BadRequest("Usuário ou senha inválidos.");
+        }
     }
 }
